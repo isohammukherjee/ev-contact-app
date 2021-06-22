@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 4,
+      "firstName": "Ev",
+      "lastName": "Hl",
+      "emailId": "evhl@gmail.com",
+      "phoneNumber": "1234567890",
+      "statusVal": true
+    },
+    {
+      "id": 5,
+      "firstName": "Hl",
+      "lastName": "Ev",
+      "emailId": "hlev@yahoo.com",
+      "phoneNumber": "0987612345",
+      "statusVal": false
+    },
+    {
+      "id": 3,
+      "firstName": "Contact",
+      "lastName": "Management",
+      "emailId": "ecma@gmail.com",
+      "phoneNumber": "9874563201",
+      "statusVal": true
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}

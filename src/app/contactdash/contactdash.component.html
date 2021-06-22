@@ -1,0 +1,161 @@
+<!-- <p>contactdash works! Works Via app.component.html</p> -->
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-light bg-info">
+  <div class="container-fluid">
+    <h1 style="color: rgb(255, 253, 145)">Contact Management App</h1>
+    <!-- Button trigger modal -->
+    <div class="d-flex flex-row-reverse">
+      <button
+        (click)="clickAddContact()"
+        type="button"
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Add New Contact
+      </button>
+    </div>
+  </div>
+</nav>
+
+<table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email Id</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of contactAll">
+      <td>{{ data.firstName }}</td>
+      <td>{{ data.lastName }}</td>
+      <td>{{ data.emailId }}</td>
+      <td>{{ data.phoneNumber }}</td>
+      <td>
+        <!-- {{data.statusVal}} -->
+        <span *ngIf="data.statusVal; then thenTemplateName; else elseTemplateName">
+        </span>
+        <ng-template #thenTemplateName> Available </ng-template>
+        <ng-template #elseTemplateName> Unavailable </ng-template>
+      </td>
+      <td>
+        <button
+          (click)="onEdit(data)"
+          class="btn btn-primary me-1"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Edit
+        </button>
+        <button class="btn btn-danger me-1" (click)="deleteContacts(data)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Bootstrap Modal -->
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 *ngIf="showAdd" class="modal-title" id="exampleModalLabel">Add New Contact</h5>
+        <h5 *ngIf="showUpdate" class="modal-title" id="exampleModalLabel">Edit Contact</h5>        
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstName"
+              id="firstName"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastName"
+              id="lastName"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="emailId" class="form-label">Email Id</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="emailId"
+              id="emailId"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="phoneNumber"
+              id="phoneNumber"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3 form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              formControlName="statusVal"
+              id="statusVal"
+            />
+            <label class="form-check-label" for="statusVal">Status</label>
+          </div>
+          <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          *ngIf="showAdd"
+          type="button"
+          class="btn btn-success"
+          (click)="postContactDetails()"
+        >
+          Add +
+        </button>
+        <button
+          *ngIf="showUpdate"
+          type="button"
+          class="btn btn-warning"
+          (click)="updateContactDetails()"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
