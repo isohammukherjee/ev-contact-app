@@ -10,11 +10,11 @@ import { ContactDashModel } from './contactdash.model';
 })
 export class ContactdashComponent implements OnInit {
 
+  showAdd!: boolean;
+  showUpdate!: boolean;
   formValue !: FormGroup;
   contactModelObj : ContactDashModel = new ContactDashModel();
   contactAll: any;
-  showAdd!: boolean;
-  showUpdate!: boolean;
 
   constructor(private formBuilder : FormBuilder, private api: ApiService) { }
 
@@ -38,7 +38,7 @@ export class ContactdashComponent implements OnInit {
   }
 
   postContactDetails() {
-    
+    this.contactModelObj.id = this.formValue.value.id;
     this.contactModelObj.firstName = this.formValue.value.firstName;
     this.contactModelObj.lastName = this.formValue.value.lastName;
     this.contactModelObj.emailId = this.formValue.value.emailId;
@@ -51,7 +51,7 @@ export class ContactdashComponent implements OnInit {
       this.formValue.reset();
       this.getAllContacts();
     }, err => {
-      alert ("Something Went Wrong While Adding Contact!!!!")
+      alert("Something Went Wrong While Adding Contact!!!!");
     });
 
   }
@@ -74,7 +74,6 @@ export class ContactdashComponent implements OnInit {
     
     this.showAdd = false;
     this.showUpdate = true;
-
     this.contactModelObj.id = data.id;
     this.formValue.controls['firstName'].setValue(data.firstName);
     this.formValue.controls['lastName'].setValue(data.lastName);
@@ -92,7 +91,7 @@ export class ContactdashComponent implements OnInit {
 
     this.api.updateContact(this.contactModelObj, this.contactModelObj.id).subscribe(res => {
       alert("Contact Updated Successfully!");
-      this.formValue.reset();
+      //this.formValue.reset();
       this.getAllContacts();
     });
 
