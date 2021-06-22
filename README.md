@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Running the JSON Server
+
+Run `json-server --watch db.json` for a server started in watch mode that watches for file changes and updates the API accordingly. Navigate to `http://localhost:3000/` to check the mock database. 
