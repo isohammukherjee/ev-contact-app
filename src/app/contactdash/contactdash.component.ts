@@ -37,7 +37,8 @@ export class ContactdashComponent implements OnInit {
     this.showUpdate = false;
   }
 
-  postContactDetails(){
+  postContactDetails() {
+    
     this.contactModelObj.firstName = this.formValue.value.firstName;
     this.contactModelObj.lastName = this.formValue.value.lastName;
     this.contactModelObj.emailId = this.formValue.value.emailId;
